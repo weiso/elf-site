@@ -1,8 +1,19 @@
 {
   "protocol_version": "1.0",
   "organization": {
-    "name": "ACRWC LLC (ELF Aluminum Forging)",
-    "domain": "elf.acrwcllc.com"
+    "name": "ACRWC LLC",
+    "domain": "elf.acrwcllc.com",
+    "logo_uri": "https://elf.acrwcllc.com/logo.jpg"
   },
+  "auth": {
+    "disabled": true
+  },
+  "apis": [
+    {
+      "type": "openapi",
+      "url": "https://elf.acrwcllc.com/api/openapi.json",
+      "description": "Read-only catalog of ACRWC consulting services (business development, forged aluminium advisory, ADAS/radar intelligence, custom research) with how to request a quote. No sign-in."
+    }
+  ],
   "web": {}
 }

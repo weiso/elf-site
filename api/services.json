@@ -1,0 +1,40 @@
+{
+  "organization": "ACRWC LLC",
+  "site": "https://elf.acrwcllc.com",
+  "pricing": "By project; prices are quoted per engagement.",
+  "how_to_inquire": {
+    "method": "email",
+    "address": "weiso@acrwcllc.com",
+    "note": "Send a quote request naming the service; a person replies. Agents should get the user's approval before sending."
+  },
+  "services": [
+    {
+      "id": "automotive-business-development-consulting",
+      "name": "Automotive Business Development Consulting",
+      "description": "Market entry and customer development for automotive and commercial-vehicle suppliers: OEM and Tier-1 target-account mapping, outreach and first-meeting preparation, and support with OEM supplier-portal registration.",
+      "page": "https://elf.acrwcllc.com/#services",
+      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20Automotive%20Business%20Development%20Consulting"
+    },
+    {
+      "id": "forged-aluminium-market-supply-chain-advisory",
+      "name": "Forged Aluminium Market & Supply-Chain Advisory",
+      "description": "Forged aluminium wheels and chassis/structural parts for commercial vehicles: demand and market size, sourcing and supplier landscape, supplier qualification and onboarding.",
+      "page": "https://elf.acrwcllc.com/#services",
+      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20Forged%20Aluminium%20Market%20%26%20Supply-Chain%20Advisory"
+    },
+    {
+      "id": "adas-automotive-radar-market-intelligence",
+      "name": "ADAS & Automotive Radar Market Intelligence",
+      "description": "Radar technology trends including GaN radar, commercial-vehicle ADAS adoption, and regulatory impact including the EU AI Act.",
+      "page": "https://elf.acrwcllc.com/#services",
+      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20ADAS%20%26%20Automotive%20Radar%20Market%20Intelligence"
+    },
+    {
+      "id": "custom-research-report",
+      "name": "Custom Research Report",
+      "description": "One-off research on a market, competitor or technology, delivered as a concise written report with sources.",
+      "page": "https://elf.acrwcllc.com/#services",
+      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20Custom%20Research%20Report"
+    }
+  ]
+}

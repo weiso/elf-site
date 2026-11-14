@@ -1,0 +1,33 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ACRWC LLC public services catalog",
+    "version": "1.0.0",
+    "description": "Read-only, signed-out catalog of ACRWC LLC consulting services. No authentication."
+  },
+  "servers": [
+    {
+      "url": "https://elf.acrwcllc.com"
+    }
+  ],
+  "paths": {
+    "/api/services.json": {
+      "get": {
+        "operationId": "listServices",
+        "summary": "List consulting services and how to request a quote",
+        "responses": {
+          "200": {
+            "description": "Services catalog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
