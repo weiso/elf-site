@@ -3,7 +3,7 @@
   "info": {
     "title": "ACRWC LLC public services catalog",
     "version": "1.0.0",
-    "description": "Read-only, signed-out catalog of ACRWC LLC consulting services. No authentication."
+    "description": "Read-only, signed-out catalog of ACRWC LLC consulting services. No authentication. To submit a quote inquiry, use the inquiry API described at https://acrwc-poppy.acrwc.workers.dev/openapi.json (POST /inquiries), only with the user's explicit approval. Requests may carry the Poppy-Session header; it is accepted and ignored because no Session claims are used (Poppy 1.0 sections 5.3 and 7)."
   },
   "servers": [
     {

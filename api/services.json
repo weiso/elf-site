@@ -3,9 +3,19 @@
   "site": "https://elf.acrwcllc.com",
   "pricing": "By project; prices are quoted per engagement.",
   "how_to_inquire": {
+    "methods": [
+      "api",
+      "email"
+    ],
+    "api": {
+      "method": "POST",
+      "url": "https://acrwc-poppy.acrwc.workers.dev/inquiries",
+      "openapi": "https://acrwc-poppy.acrwc.workers.dev/openapi.json",
+      "fields": "service_id, name, company, email, message (required); phone, country, on_behalf_of_user (optional)"
+    },
     "method": "email",
     "address": "weiso@acrwcllc.com",
-    "note": "Send a quote request naming the service; a person replies. Agents should get the user's approval before sending."
+    "note": "Submit a quote inquiry through the API or by email, naming the service. Agents must get the user's explicit approval before submitting. A person replies by email; no price or commitment is given automatically."
   },
   "services": [
     {
