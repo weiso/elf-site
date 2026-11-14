@@ -1,50 +1,60 @@
 {
   "organization": "ACRWC LLC",
   "site": "https://elf.acrwcllc.com",
+  "description": "ACRWC LLC is a project-based consultancy. ELF is ACRWC LLC's aluminum-forging advisory initiative; ACRWC LLC does not manufacture parts.",
   "pricing": "By project; prices are quoted per engagement.",
   "how_to_inquire": {
-    "methods": [
-      "api",
-      "email"
-    ],
     "api": {
       "method": "POST",
       "url": "https://acrwc-poppy.acrwc.workers.dev/inquiries",
+      "status_url_template": "https://acrwc-poppy.acrwc.workers.dev/inquiries/{inquiry_id}",
       "openapi": "https://acrwc-poppy.acrwc.workers.dev/openapi.json",
-      "fields": "service_id, name, company, email, message (required); phone, country, on_behalf_of_user (optional)"
+      "required_fields": [
+        "service_id",
+        "name",
+        "company",
+        "email",
+        "message"
+      ],
+      "optional_fields": [
+        "phone",
+        "country",
+        "on_behalf_of_user"
+      ]
     },
-    "method": "email",
-    "address": "weiso@acrwcllc.com",
-    "note": "Submit a quote inquiry through the API or by email, naming the service. Agents must get the user's explicit approval before submitting. A person replies by email; no price or commitment is given automatically."
+    "email": {
+      "address": "acrwcllc@gmail.com"
+    },
+    "note": "Submit a quote inquiry through the API or by email, naming the service. Agents must get the user's explicit approval of the service, contact details and message before submitting. A person reviews inquiries and replies by email; no price, contract or commitment is created automatically."
   },
   "services": [
     {
       "id": "automotive-business-development-consulting",
       "name": "Automotive Business Development Consulting",
-      "description": "Market entry and customer development for automotive and commercial-vehicle suppliers: OEM and Tier-1 target-account mapping, outreach and first-meeting preparation, and support with OEM supplier-portal registration.",
+      "description": "Market-entry and customer-development support for automotive and commercial-vehicle suppliers. Potential engagement topics include OEM and Tier-1 target-account mapping, outreach and first-meeting preparation, and support with supplier-portal registration.",
       "page": "https://elf.acrwcllc.com/#services",
-      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20Automotive%20Business%20Development%20Consulting"
+      "quote_request": "mailto:acrwcllc@gmail.com?subject=Quote%20request%3A%20Automotive%20Business%20Development%20Consulting"
     },
     {
       "id": "forged-aluminium-market-supply-chain-advisory",
-      "name": "Forged Aluminium Market & Supply-Chain Advisory",
-      "description": "Forged aluminium wheels and chassis/structural parts for commercial vehicles: demand and market size, sourcing and supplier landscape, supplier qualification and onboarding.",
+      "name": "Forged Aluminum Market & Supply-Chain Advisory",
+      "description": "Research on forged aluminum wheels and chassis or structural parts for commercial vehicles. Topics include demand and market sizing, supplier landscapes, sourcing considerations, qualification and onboarding.",
       "page": "https://elf.acrwcllc.com/#services",
-      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20Forged%20Aluminium%20Market%20%26%20Supply-Chain%20Advisory"
+      "quote_request": "mailto:acrwcllc@gmail.com?subject=Quote%20request%3A%20Forged%20Aluminum%20Market%20%26%20Supply-Chain%20Advisory"
     },
     {
       "id": "adas-automotive-radar-market-intelligence",
       "name": "ADAS & Automotive Radar Market Intelligence",
-      "description": "Radar technology trends including GaN radar, commercial-vehicle ADAS adoption, and regulatory impact including the EU AI Act.",
+      "description": "Market and technology briefings on automotive radar, commercial-vehicle ADAS adoption and relevant regulatory developments. Scope and sources are agreed for each engagement.",
       "page": "https://elf.acrwcllc.com/#services",
-      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20ADAS%20%26%20Automotive%20Radar%20Market%20Intelligence"
+      "quote_request": "mailto:acrwcllc@gmail.com?subject=Quote%20request%3A%20ADAS%20%26%20Automotive%20Radar%20Market%20Intelligence"
     },
     {
       "id": "custom-research-report",
       "name": "Custom Research Report",
-      "description": "One-off research on a market, competitor or technology, delivered as a concise written report with sources.",
+      "description": "Focused research on a market, competitor or technology, delivered as a concise written report with sources.",
       "page": "https://elf.acrwcllc.com/#services",
-      "quote_request": "mailto:weiso@acrwcllc.com?subject=Quote%20request%3A%20Custom%20Research%20Report"
+      "quote_request": "mailto:acrwcllc@gmail.com?subject=Quote%20request%3A%20Custom%20Research%20Report"
     }
   ]
 }

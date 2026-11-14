@@ -9,7 +9,7 @@
     {
       "type": "openapi",
       "url": "https://elf.acrwcllc.com/api/openapi.json",
-      "description": "Read-only catalog of ACRWC consulting services (business development, forged aluminium advisory, ADAS/radar intelligence, custom research). No sign-in."
+      "description": "Read-only catalog of ACRWC consulting services (business development, forged aluminum advisory, ADAS/radar intelligence, custom research). No sign-in."
     },
     {
       "type": "openapi",

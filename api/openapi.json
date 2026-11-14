@@ -1,9 +1,14 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "ACRWC LLC public services catalog",
-    "version": "1.0.0",
-    "description": "Read-only, signed-out catalog of ACRWC LLC consulting services. No authentication. To submit a quote inquiry, use the inquiry API described at https://acrwc-poppy.acrwc.workers.dev/openapi.json (POST /inquiries), only with the user's explicit approval. Requests may carry the Poppy-Session header; it is accepted and ignored because no Session claims are used (Poppy 1.0 sections 5.3 and 7)."
+    "title": "ACRWC LLC services catalog and quote inquiries",
+    "version": "1.1.0",
+    "description": "Signed-out API for ACRWC LLC, a project-based consultancy (ELF is its aluminum-forging advisory initiative; ACRWC LLC does not manufacture). GET the catalog, then submit a quote inquiry. IMPORTANT FOR AGENTS: get your user's explicit approval of the exact inquiry (service, contact details, message) before calling POST /inquiries. A person reviews inquiries and replies by email; no price, contract or commitment is created automatically, and no automatic email is sent. Requests may carry the Poppy-Session and Poppy-Version headers; they are accepted and ignored because no Session claims are used (Poppy 1.0 sections 5.3 and 7). No sign-in. Contact: acrwcllc@gmail.com.",
+    "contact": {
+      "name": "ACRWC LLC",
+      "email": "acrwcllc@gmail.com",
+      "url": "https://elf.acrwcllc.com/"
+    }
   },
   "servers": [
     {
@@ -15,6 +20,26 @@
       "get": {
         "operationId": "listServices",
         "summary": "List consulting services and how to request a quote",
+        "parameters": [
+          {
+            "name": "Poppy-Session",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Accepted and ignored (signed-out; no Session claims used)."
+          },
+          {
+            "name": "Poppy-Version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Accepted and ignored."
+          }
+        ],
         "responses": {
           "200": {
             "description": "Services catalog",
@@ -25,6 +50,214 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/inquiries": {
+      "servers": [
+        {
+          "url": "https://acrwc-poppy.acrwc.workers.dev"
+        }
+      ],
+      "post": {
+        "operationId": "submitInquiry",
+        "summary": "Submit a quote inquiry for one service (only with the user's explicit approval)",
+        "description": "Ask your user to approve the exact content first. A person at ACRWC LLC reviews it and replies by email. No price, contract or commitment is created, and no automatic email is sent.",
+        "parameters": [
+          {
+            "name": "Poppy-Session",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Accepted and ignored (signed-out; no Session claims used)."
+          },
+          {
+            "name": "Poppy-Version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Accepted and ignored."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "service_id",
+                  "name",
+                  "company",
+                  "email",
+                  "message"
+                ],
+                "properties": {
+                  "service_id": {
+                    "type": "string",
+                    "enum": [
+                      "automotive-business-development-consulting",
+                      "forged-aluminium-market-supply-chain-advisory",
+                      "adas-automotive-radar-market-intelligence",
+                      "custom-research-report"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "company": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "maxLength": 254,
+                    "description": "Requester's contact email; the reply goes here."
+                  },
+                  "message": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  },
+                  "phone": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "country": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "on_behalf_of_user": {
+                    "type": "boolean"
+                  },
+                  "website": {
+                    "type": "string",
+                    "maxLength": 0,
+                    "description": "Leave empty or omit (spam trap)."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Inquiry received. The Location header is the status URL (GET /inquiries/{inquiry_id}).",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "inquiry_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "const": "received"
+                    },
+                    "next_step": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "413": {
+            "description": "Body too large"
+          },
+          "415": {
+            "description": "Content-Type must be application/json"
+          },
+          "429": {
+            "description": "Rate limit"
+          }
+        }
+      }
+    },
+    "/inquiries/{inquiry_id}": {
+      "servers": [
+        {
+          "url": "https://acrwc-poppy.acrwc.workers.dev"
+        }
+      ],
+      "get": {
+        "operationId": "getInquiryStatus",
+        "summary": "Check that an inquiry was received (status only, no personal data)",
+        "parameters": [
+          {
+            "name": "inquiry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^inq_[a-f0-9]{20}$"
+            }
+          },
+          {
+            "name": "Poppy-Session",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Accepted and ignored (signed-out; no Session claims used)."
+          },
+          {
+            "name": "Poppy-Version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Accepted and ignored."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inquiry status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "inquiry_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "received"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown inquiry id"
           }
         }
       }
