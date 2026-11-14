@@ -5,9 +5,6 @@
     "domain": "elf.acrwcllc.com",
     "logo_uri": "https://elf.acrwcllc.com/logo.jpg"
   },
-  "auth": {
-    "disabled": true
-  },
   "apis": [
     {
       "type": "openapi",
